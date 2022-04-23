@@ -23,3 +23,9 @@
 */
 
 //Udemy number 97 texttheme styles for text
+
+//Flexible and Expanded are used to fit the row and column in terms of how much space they should occupy.
+//Flexible: fit : Flexfit.tight will give the column or row all the renainig space available
+//Default is Flexfit.loose
+
+//Note ,Expanded is simply Flexible fit with Flexfit.tight

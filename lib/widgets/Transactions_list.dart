@@ -31,57 +31,30 @@ class TransactionsList extends StatelessWidget {
           : ListView.builder(
               //ListView.builder takes itembuilder and itemCount as a must have.
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Card(
-                    // TODO: THEMEING
-                    color: const Color.fromRGBO(133, 200, 101, 1),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
-                          ),
-                          decoration: BoxDecoration(
-                            //Amount Border
-                            border: Border.all(
-                              //Boder color
-                              color: Colors.white,
-                              //Border size
-                              width: 2,
-                            ),
-                          ),
-                          padding: const EdgeInsets.all(10),
+                return Card(
+                  elevation: 5,
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.green,
+                      child: Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: FittedBox(
                           child: Text(
-                            //'\$' + tx.amount.toString(),
-                            //tostringAsfixed for how many decimal places.
-                            '\$${transactions[index].amount.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
+                            '\$${transactions[index].amount}',
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              transactions[index].title,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            Text(
-                              DateFormat.yMMMEd()
-                                  .add_Hm()
-                                  .format(transactions[index].datetime),
-                              style: const TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                      ),
+                    ),
+                    title: Text(
+                      transactions[index].title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(transactions[index].datetime),
                     ),
                   ),
                 );

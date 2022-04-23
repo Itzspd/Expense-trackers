@@ -1,7 +1,7 @@
-import './widgets/Transactions_list.dart';
+import 'package:app_2/widgets/Transactions_list.dart';
+import './widgets/chart.dart';
 import './widgets/new_transactions.dart';
 import 'package:flutter/material.dart';
-
 import './models/Transactions.dart';
 
 void main() => runApp(ExpenseTracker());
@@ -41,6 +41,18 @@ class _HomepageState extends State<Homepage> {
     ),
     */
   ];
+
+  //List to showcase the chart in 7 days interval.
+  List<Transactions> get _recentTransactions {
+    //.where for list is used here to get only transactions withing 7days period.
+    return _userTransactions.where((trans) {
+      // will get the transactions before 7days.
+      return trans.datetime.isAfter(
+        DateTime.now().subtract(Duration(days: 7)),
+      );
+    }).toList();
+  }
+
 //Function to add new Transactions.
   void _addNewTransactions(String txTitle, double txAmount) {
     final newTx = Transactions(
@@ -115,15 +127,7 @@ class _HomepageState extends State<Homepage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                height: 200,
-                width: double.infinity,
-                child: const Card(
-                  elevation: 3,
-                  color: Colors.white,
-                  child: Text('CHART'),
-                ),
-              ),
+              Chart(_recentTransactions),
               const SizedBox(
                 height: 10,
               ),
